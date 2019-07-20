@@ -4,83 +4,83 @@
       layout:decorate="~{fragments/layout}">
 <head>
     <meta charset="UTF-8">
-    <title>SimpleEvents</title>
+    <title>Login</title>
     <!-- UIkit CSS -->
     <link rel="stylesheet" th:href="@{/css/uikit.min.css}" />
     <link rel="stylesheet" th:href="@{/css/custom.css}" />
 
-    <!-- UIkit JS -->
-    <script th:src="@{/js/uikit.min.js}"></script>
-    <script th:src="@{/js/uikit-icons.min.js}"></script>
 </head>
 <body>
 
-<section id="fullpage-form">
+    <section id="fullpage-form">
 
-    <div class="container">
-        <div class="uk-clearfix">
-            <button class="uk-close-large uk-align-right" type="button" uk-close></button>
+        <div class="container">
+            <div class="uk-clearfix">
+                <button class="uk-close-large uk-align-right" type="button" uk-close></button>
+            </div>
+
+            <div class="uk-card uk-card-default uk-card-body">
+                <div >
+                    <div>
+                        <ul class="uk-flex-center" uk-tab>
+                            <li class="uk-active"><a href="">Login</a></li>
+                            <li><a onclick="redirectTo('register')">Cadastro</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div >
+                    <div uk-alert class="uk-alert-danger login-fail" hidden>
+                        <span>Senha incorreta</span>
+                        <a class="uk-alert-close" uk-close></a>
+                    </div>
+
+                    <div class="uk-light">
+                        <a class="uk-logo" href="">
+                            <img th:src="@{/img/bicoscom.png}" alt="">
+                        </a>
+                    </div>
+                    <div>
+                        <p>Realize o login para procurar/registrar vagas no bicos.com</p>
+                    </div>
+                    <div>
+                        <form class="uk-form-stacked" th:action="@{/login}" method="POST">
+                            <div th:if="${param.error}">
+                                <div>
+                                    Invalid username or password.
+                                </div>
+                            </div>
+                            <div th:if="${param.logout}">
+                                <div>
+                                    You have been logged out.
+                                </div>
+                            </div>
+                            <div class="uk-margin">
+                                <label class="uk-form-label" for="form-stacked-text">Usuário</label>
+                                <div class="uk-form-controls">
+                                    <input class="uk-input" id="form-stacked-text" type="text" placeholder="Digite o Usuário...">
+                                </div>
+                            </div>
+
+                            <div class="uk-margin">
+                                <label class="uk-form-label" for="form-stacked-text">Senha</label>
+                                <div class="uk-form-controls">
+                                    <input class="uk-input" id="form-stacked-text" type="password" placeholder="Digite sua Senha...">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div >
+                    <button class="uk-button uk-button-primary uk-align-center">Entrar</button>
+                    <p><a href="/" th:href="@{/}">Back to home page</a></p>
+                </div>
+
+            </div>
+
         </div>
+    </section>
 
-        <div class="uk-card uk-card-default uk-card-body">
-            <div >
-                <div>
-                    <ul class="uk-flex-center" uk-tab>
-                        <li class="uk-active"><a th:href="@{/register}">Login</a></li>
-                        <li><a th:href="@{/register}">Cadastro</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div >
-                <div uk-alert class="uk-alert-danger login-fail" hidden>
-                    <span>Senha incorreta</span>
-                    <a class="uk-alert-close" uk-close></a>
-                </div>
-
-                <div class="uk-light">
-                    <a class="uk-logo" href="">
-                        <img th:src="@{/img/bicoscom.png}" alt="">
-                    </a>
-                </div>
-                <div>
-                    <p>Realize o login para procurar/registrar vagas no bicos.com</p>
-                </div>
-                <div>
-                    <form class="uk-form-stacked" th:action="@{/login}" method="POST">
-                        <div th:if="${param.error}">
-                            <div>
-                                Invalid username or password.
-                            </div>
-                        </div>
-                        <div th:if="${param.logout}">
-                            <div>
-                                You have been logged out.
-                            </div>
-                        </div>
-                        <div class="uk-margin">
-                            <label class="uk-form-label" for="form-stacked-text">Usuário</label>
-                            <div class="uk-form-controls">
-                                <input class="uk-input" id="form-stacked-text" type="text" placeholder="Digite o Usuário...">
-                            </div>
-                        </div>
-
-                        <div class="uk-margin">
-                            <label class="uk-form-label" for="form-stacked-text">Senha</label>
-                            <div class="uk-form-controls">
-                                <input class="uk-input" id="form-stacked-text" type="password" placeholder="Digite sua Senha...">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div >
-                <button class="uk-button uk-button-primary uk-align-center">Entrar</button>
-                <p><a href="/" th:href="@{/}">Back to home page</a></p>
-            </div>
-
-        </div>
-
-    </div>
-</section>
+<script th:src="@{/js/uikit.min.js}"></script>
+<script th:src="@{/js/uikit-icons.min.js}"></script>
 </body>
 </html>

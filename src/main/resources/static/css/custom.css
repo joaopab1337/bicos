@@ -426,4 +426,8 @@ img {
   height: 240px;
 }
 
+.uk-button:focus {
+  background-color: #c59609;
+}
+
 /*# sourceMappingURL=custom.css.map */

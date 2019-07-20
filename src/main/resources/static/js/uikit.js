@@ -12173,3 +12173,5 @@
     return UIkit;
 
 }));
+
+const redirectToRegistration = () => window.location.href = @{/register}
