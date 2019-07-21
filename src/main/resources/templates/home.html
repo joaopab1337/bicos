@@ -70,7 +70,56 @@
         </div>
     </header>
 
-    <h1 th:text="'Olá' + ${currentUser.name} + '!'"></h1>
+
+    <section id="user-info" class="uk-container">
+        <div class="uk-card uk-card-default uk-grid-collapse uk-margin  " uk-grid>
+            <div class="uk-card-media-left uk-margin uk-margin-left user-pic-container">
+                <img th:src="${currentUser.imageURL}" alt="" class="uk-border-circle user-big-pic">
+            </div>
+            <div class="uk-width-2-3 uk-margin-right">
+                <div class="uk-card-body">
+                    <h1>Olá <span class="yellow" th:text="${currentUser.name}"></span></h1>
+                    <div class="status">
+                        <progress class="uk-progress" th:value="${currentUser.helpfulnessRating}" max="100"></progress>
+                        <div class="status-label">
+                            <span>
+                                <img th:src="@{/img/handshake.svg}" class="feature-icons"/>
+                            </span>
+                            <span>
+                                <span th:text="${currentUser.helpfulnessRating}" class="blue"></span>
+                                pontos de Prestatividade
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <progress class="uk-progress" th:value="${currentUser.punctualityRating}" max="100"></progress>
+                        <div class="status-label">
+                            <span>
+                                <img th:src="@{/img/clock.svg}" class="feature-icons"/>
+                            </span>
+                            <span>
+                                <span th:text="${currentUser.helpfulnessRating}" class="blue"></span>
+                                pontos de Pontualidade
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <progress class="uk-progress" th:value="${currentUser.sympathyRating}" max="100"></progress>
+                        <div class="status-label">
+                            <span>
+                                <img th:src="@{/img/laugh.svg}" class="feature-icons"/>
+                            </span>
+                            <span>
+                                <span th:text="${currentUser.helpfulnessRating}" class="blue"></span>
+                                pontos de Simpatia
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
 
     <form id="logoutForm" method="POST" th:action="@{/logout}">
 
@@ -80,5 +129,24 @@
     </script>
     <script th:src="@{/js/uikit.min.js}"></script>
     <script th:src="@{/js/uikit-icons.min.js}"></script>
+    <script>
+
+        UIkit.util.ready(function () {
+
+            var bar = document.getElementById('js-progressbar');
+
+            var animate = setInterval(function () {
+
+                bar.value += 10;
+
+                if (bar.value >= bar.max) {
+                    clearInterval(animate);
+                }
+
+            }, 1000);
+
+        });
+
+    </script>
 </body>
 </html>

@@ -88,7 +88,7 @@ h6 {
 /*====================================================================
             HEADER
 =====================================================================*/
-header {
+header#navbar {
   background-color: #fff;
   box-shadow: 0 10px 20px #F4F4F5;
 }
@@ -352,6 +352,10 @@ nav.uk-navbar .uk-navbar-center .uk-search {
   justify-content: space-around;
 }
 
+.new-event #progressbar {
+  display: flex;
+  justify-content: center;
+}
 .new-event .container {
   width: 100% !important;
   max-width: 900px;
@@ -415,6 +419,7 @@ img {
 
 .user-thumb-pic {
   height: 40px;
+  width: 40px;
 }
 
 .user-mthumb-pic {
@@ -424,10 +429,128 @@ img {
 
 .user-big-pic {
   height: 240px;
+  width: 240px;
 }
 
-.uk-button:focus {
+/*====================================================================
+           FOOTER
+=====================================================================*/
+footer#general-footer {
   background-color: #c59609;
+  color: white !important;
+}
+
+/*====================================================================
+           USER
+=====================================================================*/
+#user-info h4 {
+  margin: 0;
+  color: #8F8FA0;
+}
+
+.user-pic-container {
+  display: flex;
+  align-items: center;
+}
+
+.status {
+  padding: 20px;
+}
+.status div h5 {
+  margin: 5px;
+  max-width: 100%;
+}
+.status div h5 span {
+  font-weight: normal;
+  float: right;
+}
+
+.comment-container {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.comment-container .comment {
+  width: 70%;
+}
+.comment-container .rating-container {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+.comment-container .rating-type-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+}
+.comment-container .icons {
+  font-size: 18px;
+}
+
+/*====================================================================
+           vagas
+=====================================================================*/
+.vaga-item-card {
+  max-width: 200px;
+}
+.vaga-item-card .uk-card-header h4 {
+  margin: 5px;
+}
+.vaga-item-card .user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.vaga-item-card .user .uk-width-auto {
+  padding-left: 10px;
+}
+.vaga-item-card .user span {
+  font-size: 12px;
+  color: #8F8FA0;
+}
+.vaga-item-card .uk-card-body {
+  padding: 20px;
+}
+.vaga-item-card .uk-card-body h4 {
+  font-size: 14px;
+  text-align: center;
+  margin: 0;
+}
+.vaga-item-card .uk-card-body .uk-button-primary-outline {
+  margin: 0 auto;
+  width: 100%;
+  font-size: 12px;
+  padding: 2px 16px;
+  border-color: #6FC5D6;
+  color: #6FC5D6 !important;
+}
+.vaga-item-card .uk-card-body .uk-button-primary-outline:hover {
+  background-color: #66d2ea;
+  border-color: #66d2ea;
+  color: #fff !important;
+}
+.vaga-item-card .uk-card-footer div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.vaga-item-card .uk-card-footer div span {
+  font-size: 12px;
+  padding-right: 10px;
+}
+.vaga-item-card .uk-card-footer div .icons {
+  font-size: 16px;
+}
+.vaga-item-card .status h4 {
+  font-size: 18px;
+  color: #8F8FA0;
+  display: flex;
+  justify-content: center;
+}
+.vaga-item-card .status h4 span {
+  font-size: 32px;
+  padding-right: 10px;
 }
 
 /*# sourceMappingURL=custom.css.map */

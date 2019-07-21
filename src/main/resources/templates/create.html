@@ -67,7 +67,7 @@
                     <fieldset id="jobs" class="part2">
                         <div class="uk-margin uk-panel uk-panel-scrollable">
                             <ul class="uk-list">
-                                <li th:each=" bean, stat : ${eventForm.jobs}">
+                                <li  th:each="row,rowStat : *{eventForm.jobs}">
                                     <div class="uk-margin vaga-item">
                                         <div>
                                             <input class="uk-input uk-form-blank uk-form-width-medium h3" type="text" placeholder="Função" th:field="*{eventForm.jobs[__${stat.index}__].jobName}">
