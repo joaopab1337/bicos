@@ -48,7 +48,7 @@
                     </div>
 
 
-                    <form class="uk-form-stacked"  id="msform">
+                    <form th:action="@{/register}" th:object="${userForm}" method="POST" class="uk-form-stacked"  id="msform">
                         <ul id="progressbar">
                             <li class="active">Usuário</li>
                             <li>Dados Pessoais</li>
@@ -58,28 +58,28 @@
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="user">Usuário</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="user" name="user" type="text" placeholder="ex: joao_S...">
+                                    <input class="uk-input" id="user" th:field="*{username}" type="text" placeholder="ex: joao_S...">
                                 </div>
                             </div>
 
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="password">Senha</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="password" name="password" type="password" placeholder="Senha com 6 ou mais caractéres...">
+                                    <input class="uk-input" id="password" th:field="*{password}" type="password" placeholder="Senha com 6 ou mais caractéres...">
                                 </div>
                             </div>
 
                             <div class="uk-margin">
-                                <label class="uk-form-label" for="password2">Confirme a Senha</label>
+                                <label class="uk-form-label" for="passwordConfirm">Confirme a Senha</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="password2" name="password2" type="password" placeholder="">
+                                    <input class="uk-input" id="passwordConfirm" th:field="*{passwordConfirm}" type="password" placeholder="">
                                 </div>
                             </div>
 
                             <div class="uk-margin">
-                                <label class="uk-form-label" for="mail">Email</label>
+                                <label class="uk-form-label" for="email">Email</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="mail" name="mail" type="email" placeholder="joao@silva.com">
+                                    <input class="uk-input" id="email" th:field="*{email}" type="email" placeholder="joao@silva.com">
                                 </div>
                             </div>
                             <div class="register-buttons">
@@ -90,30 +90,30 @@
 
                         <fieldset class="part2">
                             <div class="uk-margin">
-                                <label class="uk-form-label" for="fullname">Nome Completo</label>
+                                <label class="uk-form-label" for="name">Nome Completo</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="fullname" name="fullname" type="text" placeholder="ex: João Silva...">
+                                    <input class="uk-input" id="name" th:field="*{name}" type="text" placeholder="ex: João Silva...">
                                 </div>
                             </div>
 
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="document">Documento de Identificação</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="document" name="document" type="text" placeholder="RG, CPF ou outro documento válido...">
+                                    <input class="uk-input" id="document" th:field="*{document}" type="text" placeholder="RG, CPF ou outro documento válido...">
                                 </div>
                             </div>
 
                             <div class="uk-margin">
-                                <label class="uk-form-label" for="date">Data de Nascimento</label>
+                                <label class="uk-form-label" for="birthdate">Data de Nascimento</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="date" name="date" type="date" placeholder="dd/mm/aaaa" data-uk-datepicker="{format:'DD.MM.YYYY'}">
+                                    <input class="uk-input" id="birthdate" th:field="*{birthdate}" type="text" placeholder="dd/mm/aaaa">
                                 </div>
                             </div>
 
                             <div class="uk-margin">
-                                <label class="uk-form-label" for="tel">Telefone para Contato</label>
+                                <label class="uk-form-label" for="number">Telefone para Contato</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="tel" name="tel" type="text" placeholder="(XX) 9XXXX - XXXX">
+                                    <input class="uk-input" id="number" th:field="*{number}" type="text" placeholder="(XX) 9XXXX - XXXX">
                                 </div>
                             </div>
                             <div class="register-buttons">
@@ -127,19 +127,19 @@
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="image">Imagem</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="image" type="text" placeholder="link pra sua imagem de perfil">
+                                    <input class="uk-input" id="image" th:field="*{imageURL}" type="text" placeholder="link pra sua imagem de perfil">
                                 </div>
                             </div>
 
                             <div class="uk-margin">
-                                <label class="uk-form-label" for="bio">Bio</label>
+                                <label class="uk-form-label" for="bio" >Bio</label>
                                 <div class="uk-form-controls">
-                                    <textarea class="uk-textarea" name="bio" rows="5" placeholder="Fale sobre você..."></textarea>
+                                    <textarea class="uk-textarea" th:field="*{bio}" rows="5" placeholder="Fale sobre você..."></textarea>
                                 </div>
                             </div>
                             <div class="register-buttons">
                                 <input type="button" name="previous" class="uk-button uk-button-primary uk-align-center previous" value="Voltar" />
-                                <input type="submit" name="submit" class="uk-button uk-button-primary uk-align-center submit" value="Finalizar" />
+                                <button type="button" onclick="submitRegisterForm()" class="uk-button uk-button-primary uk-align-center submit">Finalizar</button>
                             </div>
                         </fieldset>
 
@@ -147,6 +147,11 @@
                 </div>
             </div>
     </section>
+    <script>
+        const submitRegisterForm = () => {
+            document.forms[0].submit()
+        }
+    </script>
 <script th:src="@{/js/uikit.min.js}"></script>
 <script th:src="@{/js/uikit-icons.min.js}"></script>
 <script th:src="@{/js/multipartform.js}"></script>

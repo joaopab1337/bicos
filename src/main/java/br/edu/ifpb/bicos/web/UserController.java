@@ -1,36 +1,62 @@
 package br.edu.ifpb.bicos.web;
 
 import br.edu.ifpb.bicos.entity.User;
+import br.edu.ifpb.bicos.service.SecurityService;
 import br.edu.ifpb.bicos.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.validation.Valid;
-
 @Controller
 public class UserController {
-
     @Autowired
     private UserService userService;
 
-    @PostMapping
-    public String registerUserAccount(@ModelAttribute("user") User user,
-                                      BindingResult result) {
+    @Autowired
+    private SecurityService securityService;
 
-        User existing = userService.findByEmail(user.getEmail());
-        if (existing != null) {
-            result.rejectValue("email", null, "There is already an account registered with that email");
-        }
+    @GetMapping("/register")
+    public String registration(Model model) {
+        model.addAttribute("userForm", new User());
 
-        if (result.hasErrors()) {
-            return "registration";
-        }
+        return "register";
+    }
 
-        userService.save(user);
-        return "redirect:/registration?success";
+    @PostMapping("/register")
+    public String registration(@ModelAttribute("userForm") User userForm) {
+        // Validate form here...
+
+        userService.save(userForm);
+
+        securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
+
+        return "redirect:/home";
+    }
+
+    @GetMapping("/login")
+    public String login(Model model, String error, String logout) {
+        if (error != null)
+            model.addAttribute("error", "Usuário ou senha inválidos.");
+
+        if (logout != null)
+            model.addAttribute("message", "Logout realizado com sucesso.");
+
+        return "login";
+    }
+
+    @GetMapping({"/", "/home"})
+    public String welcome(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        User currentUser = userService.findByUsername(currentPrincipalName);
+        if(currentUser == null) return "login";
+        model.addAttribute("currentUser", currentUser);
+        return "home";
     }
 
 }

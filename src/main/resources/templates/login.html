@@ -4,7 +4,7 @@
       layout:decorate="~{fragments/layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Bicos - Login</title>
     <!-- UIkit CSS -->
     <link rel="stylesheet" th:href="@{/css/uikit.min.css}" />
     <link rel="stylesheet" th:href="@{/css/custom.css}" />
@@ -57,29 +57,31 @@
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="form-stacked-text">Usuário</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="form-stacked-text" type="text" placeholder="Digite o Usuário...">
+                                    <input class="uk-input" id="form-stacked-text" name="username" type="text" placeholder="Digite o Usuário...">
                                 </div>
                             </div>
 
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="form-stacked-text">Senha</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="form-stacked-text" type="password" placeholder="Digite sua Senha...">
+                                    <input class="uk-input" id="form-stacked-text" name="password" type="password" placeholder="Digite sua Senha...">
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div >
-                    <button class="uk-button uk-button-primary uk-align-center">Entrar</button>
-                    <p><a href="/" th:href="@{/}">Back to home page</a></p>
+                    <button onClick="submitLoginForm()" class="uk-button uk-button-primary uk-align-center">Entrar</button>
+                    <p><a href="/" th:href="@{/}">Voltar</a></p>
                 </div>
 
             </div>
 
         </div>
     </section>
-
+    <script>
+        const submitLoginForm = () => {document.forms[0].submit()}
+    </script>
 <script th:src="@{/js/uikit.min.js}"></script>
 <script th:src="@{/js/uikit-icons.min.js}"></script>
 </body>
