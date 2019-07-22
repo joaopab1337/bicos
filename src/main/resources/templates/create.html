@@ -24,12 +24,12 @@
 
 
                 <form action="/create" th:object="${eventForm}" method="POST" class="uk-form-stacked" id="msform">
-                    <ul id="progressbar">
-                        <li class="active">Evento</li>
-                        <li>Vagas</li>
-                    </ul>
+<!--                    <ul id="progressbar">-->
+<!--                        <li class="active">Evento</li>-->
+<!--                        <li>Vagas</li>-->
+<!--                    </ul>-->
                     <fieldset class="part1">
-                        <div class="inline-flex">
+<!--                        <div class="inline-flex">-->
                             <div class="uk-margin" >
                                 <label class="uk-form-label" for="name">Nome do Evento</label>
                                 <div class="uk-form-controls">
@@ -58,45 +58,13 @@
                                     <input class="uk-input" id="place" th:field="*{address}" type="text" placeholder="joao@silva.com">
                                 </div>
                             </div>
-                        </div>
+<!--                        </div>-->
                         <div class="register-buttons">
-                            <button type="button" name="next" class="uk-button uk-button-primary uk-align-center next">Próximo</button>
+                            <button type="submit" class="uk-button uk-button-primary uk-align-center submit">Finalizar</button>
+<!--                            <button type="button" name="next" class="uk-button uk-button-primary uk-align-center next">Próximo</button>-->
                         </div>
                     </fieldset>
-
-                    <fieldset id="jobs" class="part2">
-                        <div class="uk-margin uk-panel uk-panel-scrollable">
-                            <ul class="uk-list">
-                                <li  th:each="row,rowStat : *{eventForm.jobs}">
-                                    <div class="uk-margin vaga-item">
-                                        <div>
-                                            <input class="uk-input uk-form-blank uk-form-width-medium h3" type="text" placeholder="Função" th:field="*{eventForm.jobs[__${stat.index}__].jobName}">
-                                        </div>
-                                        <div>
-                                            <span class="blue icons">monetization_on</span>
-                                            <input class="uk-input uk-form-width-small" id="value" name="value" type="text" placeholder="00,00" th:field="*{eventForm.jobs[__${stat.index}__].income}">
-                                        </div>
-                                        <div>
-                                            <label>QTD</label>
-                                            <button class="blue icons uk-button uk-button-link"> <span class="uk-icon blue" uk-icon="minus"></span></button>
-                                            <input name="qtd" class="uk-input uk-form-width-xsmall" th:field="*{eventForm.jobs[__${stat.index}__].quantity}">
-                                            <button class="blue icons uk-button uk-button-link"> <span class="uk-icon blue" uk-icon="plus"></span></button>
-                                            <button name="removeJob" th:value="${stat.index}" class="blue icons uk-button uk-button-link"> <span class="uk-icon blue" uk-icon="close"></span></button>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="register-buttons">
-                            <button type="button" name="add" class="uk-button uk-button-primary uk-align-center add">Adicionar Vaga</button>
-                        </div>
-                        <div class="register-buttons">
-                            <button type="button" name="previous" class="uk-button uk-button-primary uk-align-center previous">Voltar</button>
-                            <button type="button" name="submit" class="uk-button uk-button-primary uk-align-center submit">Finalizar</button>
-                        </div>
-
-                    </fieldset>
+                    
                 </form>
             </div>
         </div>
@@ -114,26 +82,6 @@
     $("#description").on("input", function(){
         document.querySelector(".sub-label").innerText = (145 - $("#description").val().length) + " CHAR"
     })
-
-    function replaceItems (html) {
-        $('#jobs').replaceWith($(html));
-    }
-
-    document.querySelector('[name="add"]').addEventListener('click', (e) => {
-        e.preventDefault()
-        let data = $('#msform').serialize()
-        data += '&addJob'
-        $.post('/create', data, replaceItems)
-    })
-
-    $('button[name="removeItem"]').click(function (event) {
-        event.preventDefault();
-        var data = $('form').serialize();
-        // Add parameter and index of item that is going to be removed.
-        data += 'removeItem=' + $(this).val();
-        $.post('/order', data, replaceItems);
-    });
-
 </script>
 
 <script th:src="@{/js/job-opening.js}"></script>

@@ -7,6 +7,8 @@ import br.edu.ifpb.bicos.service.EventService;
 import br.edu.ifpb.bicos.service.SecurityService;
 import br.edu.ifpb.bicos.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,54 +18,53 @@ import java.util.List;
 
 @Controller
 public class EventController {
+
+    @Autowired
+    private UserService userService;
+
     @Autowired
     private EventService eventService;
 
     @Autowired
     private SecurityService securityService;
 
-    private static final String AJAX_HEADER_NAME = "X-Requested-With";
-    private static final String AJAX_HEADER_VALUE = "XMLHttpRequest";
-
     @GetMapping("/create")
     public String newEventPage(Model model) {
         Event eventObj = new Event();
-        List<Job> jobs = eventObj.getJobs();
-        jobs.add(new Job());
-        eventObj.setJobs(jobs);
         model.addAttribute("eventForm", eventObj);
         return "create";
     }
 
-    @PostMapping(params = "save", path = "/create")
+    @PostMapping("/create")
     public String newEventForm(@ModelAttribute("eventForm") Event eventForm) {
         // TODO
         // Adicionar notificação ao retornar
         // Adicionar timestamps
+        User currentUser = userService.getCurrentUser();
+        eventForm.setPromoter(currentUser);
         eventService.save(eventForm);
-        return "/";
+        return "home";
     }
 
-    @PostMapping(params = "addJob", path = {"/create"})
-    public String addJob(Event event, HttpServletRequest request) {
-        event.getJobs().add(new Job());
-        if (AJAX_HEADER_VALUE.equals(request.getHeader(AJAX_HEADER_NAME))) {
-            // It is an Ajax request, render only #items fragment of the page.
-            return "create::#jobs";
-        } else {
-            // It is a standard HTTP request, render whole page.
-            return "create";
-        }
+    @GetMapping("/events")
+    public String events(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        List<Event> events = eventService.findByPromoterUsername(currentPrincipalName);
+        System.out.println(events.size());
+        model.addAttribute("events", events);
+        return "my-events";
     }
 
-    @PostMapping(params = "removeJob", path = {"/create", "/create/{id}"})
-    public String removeJob(Event event, @RequestParam("removeJob") int index, HttpServletRequest request) {
-        event.getJobs().remove(index);
-        if (AJAX_HEADER_VALUE.equals(request.getHeader(AJAX_HEADER_NAME))) {
-            return "create::#jobs";
-        } else {
-            return "create";
-        }
+    @GetMapping("/event/{id}")
+    public String eventDetails(Model model) {
+        return "event-details";
+    }
+
+    @GetMapping("/event/{id}/jobs")
+    public String eventJobs(Model model) {
+
+        return "event-jobs";
     }
 
 

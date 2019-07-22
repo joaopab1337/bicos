@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}"><head>
+    <meta charset="UTF-8">
+    <title>Bicos - Meus bicos</title>
+    <link rel="stylesheet" th:href="@{/css/uikit.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/custom.css}" />
+    <script   src="https://code.jquery.com/jquery-3.4.1.min.js"   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="   crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="   crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <header>
+        <div class="uk-visible@l">
+            <nav class="uk-container" uk-navbar>
+
+                <div class="uk-navbar-left">
+                    <a class="uk-navbar-item uk-logo" ><img th:src="@{/img/bicoscom.png}"></a>
+                </div>
+
+                <div class="uk-navbar-center">
+                    <form class="uk-search uk-search-default">
+                        <span uk-search-icon></span>
+                        <input class="uk-search-input" type="search" placeholder="">
+                    </form>
+                </div>
+
+                <div class="uk-navbar-right">
+
+                    <ul class="uk-navbar-nav">
+                        <li>
+                            <a th:href="@{/events}"> Meus Bicos </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/create}"> Criar Bico </a>
+                        </li>
+                        <li>
+                            <a onclick="logout()" class="uk-button uk-button-primary-outline">Logout</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+        </div>
+        <div class="uk-hidden@l">
+            <nav class="uk-navbar uk-navbar-container uk-margin">
+                <div class="uk-navbar-left">
+                    <a class="uk-navbar-toggle" href="#offcanvas-slide" uk-toggle>
+                        <span uk-navbar-toggle-icon></span>
+                    </a>
+                </div>
+                <div class="uk-navbar-center">
+                    <a class="uk-navbar-item uk-logo" ><img th:src="@{/img/bicoscom.png}"></a>
+                </div>
+            </nav>
+            <div id="offcanvas-slide" uk-offcanvas>
+                <div class="uk-offcanvas-bar">
+
+                    <ul class="uk-nav uk-nav-default">
+                        <li class="uk-active"><a href="#">Active</a></li>
+                        <li><a href="#">Item</a></li>
+                        <li class="uk-nav-header">Header</li>
+                        <li><a href="#">Item</a></li>
+                        <li><a href="#">Item</a></li>
+                        <li class="uk-nav-divider"></li>
+                        <li><a href="#">Item</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <table class="uk-table">
+        <caption></caption>
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Data</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody th:each="event : ${events}">
+            <tr>
+                <td th:text="${event.getName()}">
+                </td>
+                <td th:text="${event.getDescription()}">
+                </td>
+                <td th:text="${event.getDuration()}">
+                </td>
+                <td>
+                    <a th:href="'events/'+${event.getId()}">Detalhes</a>
+                </td>
+                <td>
+                    <a th:href="'events/'+${event.getId()}+'/jobs'">Vagas</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+<!--    <ul class="uk-list">-->
+<!--        <li th:each=" job : ${eventForm.jobs}">-->
+
+<!--            <hr>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <div class="uk-margin vaga-item">-->
+<!--                <div>-->
+<!--                    <input class="uk-input uk-form-blank uk-form-width-medium h3" type="text" placeholder="Função" th:field="${job.jobName}">-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <span class="blue icons">monetization_on</span>-->
+<!--                    <input class="uk-input uk-form-width-small" id="value" name="value" type="text" placeholder="00,00" th:field="">-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <label>QTD</label>-->
+<!--                    <button class="blue icons uk-button uk-button-link"> <span class="uk-icon blue" uk-icon="minus"></span></button>-->
+<!--                    <input name="qtd" class="uk-input uk-form-width-xsmall" th:field="*{eventForm.jobs[__${stat.index}__].quantity}">-->
+<!--                    <button class="blue icons uk-button uk-button-link"> <span class="uk-icon blue" uk-icon="plus"></span></button>-->
+<!--                    <button name="removeJob" th:value="${stat.index}" class="blue icons uk-button uk-button-link"> <span class="uk-icon blue" uk-icon="close"></span></button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </li>-->
+<!--    </ul>-->
+    <script th:src="@{/js/uikit.min.js}"></script>
+    <script th:src="@{/js/uikit-icons.min.js}"></script>
+</body>
+</html>

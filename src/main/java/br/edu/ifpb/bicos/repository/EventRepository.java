@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface EventRepository extends JpaRepository<Event, Long> {
     List<Event> findByNameContainingIgnoreCase(String name);
-    List<Event> findByPromoter_NameContainingIgnoreCase(String promoterName);
+    List<Event> findAllByPromoter_UsernameContainingIgnoreCase(String promoterName);
 }

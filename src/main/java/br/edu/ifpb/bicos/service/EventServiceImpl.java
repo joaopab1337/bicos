@@ -18,19 +18,19 @@ public class EventServiceImpl implements EventService {
         eventRepository.save(event);
     }
 
-    @Override
-    public List<Event> findByName(String eventName) {
-        List<Event> events = new ArrayList<>();
-        for(Event e: eventRepository.findByNameContainingIgnoreCase(eventName)) {
-            events.add(e);
-        }
-        return events;
-    }
+//    @Override
+//    public List<Event> findByName(String eventName) {
+//        List<Event> events = new ArrayList<>();
+//        for(Event e: eventRepository.findByNameContainingIgnoreCase(eventName)) {
+//            events.add(e);
+//        }
+//        return events;
+//    }
 
     @Override
-    public List<Event> findByPromoterName(String promoterName) {
+    public List<Event> findByPromoterUsername(String promoterUsername) {
         List<Event> events = new ArrayList<>();
-        for(Event e: eventRepository.findByPromoter_NameContainingIgnoreCase(promoterName)) {
+        for(Event e: eventRepository.findAllByPromoter_UsernameContainingIgnoreCase(promoterUsername)){
             events.add(e);
         }
         return events;
