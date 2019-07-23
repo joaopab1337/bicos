@@ -11,66 +11,7 @@
 </head>
 <body>
 
-    <header>
-        <div class="uk-visible@l">
-            <nav class="uk-container" uk-navbar>
-
-                <div class="uk-navbar-left">
-                    <a class="uk-navbar-item uk-logo" ><img th:src="@{/img/bicoscom.png}"></a>
-                </div>
-
-                <div class="uk-navbar-center">
-                    <form class="uk-search uk-search-default">
-                        <span uk-search-icon></span>
-                        <input class="uk-search-input" type="search" placeholder="">
-                    </form>
-                </div>
-
-                <div class="uk-navbar-right">
-
-                    <ul class="uk-navbar-nav">
-                        <li>
-                            <a th:href="@{/events}"> Meus Bicos </a>
-                        </li>
-                        <li>
-                            <a th:href="@{/create}"> Criar Bico </a>
-                        </li>
-                        <li>
-                            <a onclick="logout()" class="uk-button uk-button-primary-outline">Logout</a>
-                        </li>
-                    </ul>
-
-                </div>
-            </nav>
-        </div>
-        <div class="uk-hidden@l">
-            <nav class="uk-navbar uk-navbar-container uk-margin">
-                <div class="uk-navbar-left">
-                    <a class="uk-navbar-toggle" href="#offcanvas-slide" uk-toggle>
-                        <span uk-navbar-toggle-icon></span>
-                    </a>
-                </div>
-                <div class="uk-navbar-center">
-                    <a class="uk-navbar-item uk-logo" ><img th:src="@{/img/bicoscom.png}"></a>
-                </div>
-            </nav>
-            <div id="offcanvas-slide" uk-offcanvas>
-                <div class="uk-offcanvas-bar">
-
-                    <ul class="uk-nav uk-nav-default">
-                        <li class="uk-active"><a href="#">Active</a></li>
-                        <li><a href="#">Item</a></li>
-                        <li class="uk-nav-header">Header</li>
-                        <li><a href="#">Item</a></li>
-                        <li><a href="#">Item</a></li>
-                        <li class="uk-nav-divider"></li>
-                        <li><a href="#">Item</a></li>
-                    </ul>
-
-                </div>
-            </div>
-        </div>
-    </header>
+<div th:replace="~{fragments/header :: header-logged}"></div>
 
     <table class="uk-table">
         <caption></caption>
@@ -124,6 +65,9 @@
 <!--            </div>-->
 <!--        </li>-->
 <!--    </ul>-->
+
+<div th:replace="~{fragments/footer :: footer-yellow}"></div>
+
     <script th:src="@{/js/uikit.min.js}"></script>
     <script th:src="@{/js/uikit-icons.min.js}"></script>
 </body>

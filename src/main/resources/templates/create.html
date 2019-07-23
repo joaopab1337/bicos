@@ -11,10 +11,11 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="   crossorigin="anonymous"></script>
 </head>
 <body>
+<div th:replace="~{fragments/header :: header-logged}"></div>
+
 <section id="fullpage-form" class="new-event">
 
     <div class="container">
-
 
         <div class="uk-card uk-card-default uk-card-body">
             <div class="uk-flex-center">
@@ -70,6 +71,7 @@
         </div>
     </div>
 </section>
+<div th:insert="~{fragments/footer :: footer-yellow}"></div>
 <script th:src="@{/js/uikit.min.js}"></script>
 <script th:src="@{/js/uikit-icons.min.js}"></script>
 <script th:src="@{/js/multipartform.js}"></script>
