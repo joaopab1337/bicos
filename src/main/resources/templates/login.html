@@ -46,12 +46,12 @@
                         <form class="uk-form-stacked" th:action="@{/login}" method="POST">
                             <div th:if="${param.error}">
                                 <div>
-                                    Invalid username or password.
+                                    Usuário ou senha inválidos.
                                 </div>
                             </div>
                             <div th:if="${param.logout}">
                                 <div>
-                                    You have been logged out.
+                                    Logout realizado com sucesso.
                                 </div>
                             </div>
                             <div class="uk-margin">
