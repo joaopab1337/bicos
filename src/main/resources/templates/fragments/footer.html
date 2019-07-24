@@ -2,23 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <body>
-<th:block th:fragment="footer">
-    <footer>
-        <div class="container">
-            <p>
-                &copy; Memorynotfound.com
-                <span sec:authorize="isAuthenticated()" style="display: inline-block;">
-                    | Logged user: <span sec:authentication="name"></span> |
-                    Roles: <span sec:authentication="principal.authorities"></span> |
-                    <a th:href="@{/logout}">Sign Out</a>
-                </span>
-            </p>
-        </div>
-    </footer>
 
-    <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
-    <script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+<footer id="general-footer" th:fragment="footer-yellow">
+    <div >
+        <nav class="uk-container" uk-navbar>
 
-</th:block>
+            <div class="uk-navbar-left">
+                <a class="uk-navbar-item uk-logo" ><img th:src="@{/img/bicoscomdarkbg.png}"></a>
+            </div>
+
+            <div class="uk-navbar-center">
+                <span><span class="icons">whatshot</span> Feito na base do ódio <span class="icons">whatshot</span></span>
+            </div>
+
+            <div class="uk-navbar-right">
+
+                <ul class="uk-navbar-nav">
+                    <li class="uk-margin-left">
+                        <span uk-icon="icon: facebook"></span>
+                    </li>
+                    <li  class="uk-margin-left">
+                        <span uk-icon="icon: instagram"></span>
+                    </li>
+                    <li  class="uk-margin-left">
+                        <span uk-icon="icon: twitter"></span>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+
+</footer>
+
 </body>
 </html>

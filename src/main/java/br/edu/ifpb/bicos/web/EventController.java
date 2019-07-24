@@ -36,13 +36,14 @@ public class EventController {
     }
 
     @PostMapping("/create")
-    public String newEventForm(@ModelAttribute("eventForm") Event eventForm) {
+    public String newEventForm(@ModelAttribute("eventForm") Event eventForm, Model model) {
         // TODO
         // Adicionar notificação ao retornar
         // Adicionar timestamps
         User currentUser = userService.getCurrentUser();
         eventForm.setPromoter(currentUser);
         eventService.save(eventForm);
+        model.addAttribute("currentUser", currentUser);
         return "home";
     }
 
@@ -57,13 +58,16 @@ public class EventController {
     }
 
     @GetMapping("/event/{id}")
-    public String eventDetails(Model model) {
+    public String eventDetails(@PathVariable String id, Model model) {
+        Event e = eventService.eventById(Long.parseLong(id));
+        model.addAttribute("event", e);
         return "event-details";
     }
 
     @GetMapping("/event/{id}/jobs")
-    public String eventJobs(Model model) {
-
+    public String eventJobs(@PathVariable String id, Model model) {
+        Event e = eventService.eventById(Long.parseLong(id));
+        model.addAttribute("event", e);
         return "event-jobs";
     }
 

@@ -3,6 +3,7 @@ package br.edu.ifpb.bicos.service;
 import br.edu.ifpb.bicos.entity.Event;
 import br.edu.ifpb.bicos.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,6 +27,12 @@ public class EventServiceImpl implements EventService {
 //        }
 //        return events;
 //    }
+
+    @Override
+    public Event eventById(Long id) {
+        Event event = eventRepository.findById(id).orElse(new Event());
+        return event;
+    }
 
     @Override
     public List<Event> findByPromoterUsername(String promoterUsername) {

@@ -16,7 +16,7 @@
 
         <div class="container">
             <div class="uk-clearfix">
-                <button class="uk-close-large uk-align-right" type="button" uk-close></button>
+                <a class="uk-close-large uk-align-right" uk-close  onclick="redirectTo('')"></a>
             </div>
 
             <div class="uk-card uk-card-default uk-card-body">
@@ -29,10 +29,19 @@
                     </div>
                 </div>
                 <div >
-                    <div uk-alert class="uk-alert-danger login-fail" hidden>
-                        <span>Senha incorreta</span>
-                        <a class="uk-alert-close" uk-close></a>
+                    <div th:if="${param.error}">
+                        <div uk-alert class="uk-alert-danger login-fail">
+                            <span>Senha incorreta</span>
+                            <a class="uk-alert-close" uk-close></a>
+                        </div>
                     </div>
+                    <div th:if="${param.logout}">
+                        <div uk-alert class="uk-alert-success login-fail">
+                            <span>Você foi deslogado com sucesso, Volte sempre!</span>
+                            <a class="uk-alert-close" uk-close></a>
+                        </div>
+                    </div>
+
 
                     <div class="uk-light">
                         <a class="uk-logo" href="">
@@ -72,7 +81,6 @@
                 </div>
                 <div >
                     <button onClick="submitLoginForm()" class="uk-button uk-button-primary uk-align-center">Entrar</button>
-                    <p><a href="/" th:href="@{/}">Voltar</a></p>
                 </div>
 
             </div>

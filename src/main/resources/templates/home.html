@@ -8,68 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/custom.css}" />
 </head>
 <body>
-
-    <header>
-        <div class="uk-visible@l">
-            <nav class="uk-container" uk-navbar>
-
-                <div class="uk-navbar-left">
-                    <a class="uk-navbar-item uk-logo" ><img th:src="@{/img/bicoscom.png}"></a>
-                </div>
-
-                <div class="uk-navbar-center">
-                    <form class="uk-search uk-search-default">
-                        <span uk-search-icon></span>
-                        <input class="uk-search-input" type="search" placeholder="">
-                    </form>
-                </div>
-
-                <div class="uk-navbar-right">
-
-                    <ul class="uk-navbar-nav">
-                        <li>
-                            <a th:href="@{/events}"> Meus Bicos </a>
-                        </li>
-                        <li>
-                            <a th:href="@{/create}"> Criar Bico </a>
-                        </li>
-                        <li>
-                            <a onclick="logout()" class="uk-button uk-button-primary-outline">Logout</a>
-                        </li>
-                    </ul>
-
-                </div>
-            </nav>
-        </div>
-        <div class="uk-hidden@l">
-            <nav class="uk-navbar uk-navbar-container uk-margin">
-                <div class="uk-navbar-left">
-                    <a class="uk-navbar-toggle" href="#offcanvas-slide" uk-toggle>
-                        <span uk-navbar-toggle-icon></span>
-                    </a>
-                </div>
-                <div class="uk-navbar-center">
-                    <a class="uk-navbar-item uk-logo" ><img th:src="@{/img/bicoscom.png}"></a>
-                </div>
-            </nav>
-            <div id="offcanvas-slide" uk-offcanvas>
-                <div class="uk-offcanvas-bar">
-
-                    <ul class="uk-nav uk-nav-default">
-                        <li class="uk-active"><a href="#">Active</a></li>
-                        <li><a href="#">Item</a></li>
-                        <li class="uk-nav-header">Header</li>
-                        <li><a href="#">Item</a></li>
-                        <li><a href="#">Item</a></li>
-                        <li class="uk-nav-divider"></li>
-                        <li><a href="#">Item</a></li>
-                    </ul>
-
-                </div>
-            </div>
-        </div>
-    </header>
-
+    <div th:replace="~{fragments/header :: header-logged}"></div>
 
     <section id="user-info" class="uk-container">
         <div class="uk-card uk-card-default uk-grid-collapse uk-margin  " uk-grid>
@@ -79,48 +18,54 @@
             <div class="uk-width-2-3 uk-margin-right">
                 <div class="uk-card-body">
                     <h1>Olá <span class="yellow" th:text="${currentUser.name}"></span></h1>
-                    <div class="status">
-                        <progress class="uk-progress" th:value="${currentUser.helpfulnessRating}" max="100"></progress>
-                        <div class="status-label">
-                            <span>
-                                <img th:src="@{/img/handshake.svg}" class="feature-icons"/>
-                            </span>
-                            <span>
-                                <span th:text="${currentUser.helpfulnessRating}" class="blue"></span>
-                                pontos de Prestatividade
-                            </span>
-                        </div>
-                    </div>
-                    <div>
-                        <progress class="uk-progress" th:value="${currentUser.punctualityRating}" max="100"></progress>
-                        <div class="status-label">
-                            <span>
-                                <img th:src="@{/img/clock.svg}" class="feature-icons"/>
-                            </span>
-                            <span>
-                                <span th:text="${currentUser.helpfulnessRating}" class="blue"></span>
-                                pontos de Pontualidade
-                            </span>
-                        </div>
-                    </div>
-                    <div>
-                        <progress class="uk-progress" th:value="${currentUser.sympathyRating}" max="100"></progress>
-                        <div class="status-label">
-                            <span>
-                                <img th:src="@{/img/laugh.svg}" class="feature-icons"/>
-                            </span>
-                            <span>
-                                <span th:text="${currentUser.helpfulnessRating}" class="blue"></span>
-                                pontos de Simpatia
-                            </span>
-                        </div>
-                    </div>
 
+                    <div class="status-main">
+
+                        <div class="status-container">
+                            <div>
+                                <img th:src="@{/img/handshake.svg}" class="status-icon"/>
+                            </div>
+                            <div class="status-items">
+                                <progress class="uk-progress" th:value="${currentUser.helpfulnessRating}" max="100"></progress>
+                                <h6>
+                                    <span th:text="${currentUser.helpfulnessRating}" class="blue"></span>
+                                    pontos de  <span class="blue">Prestatividade</span>
+                                </h6>
+                            </div>
+                        </div>
+
+                        <div class="status-container">
+                            <div>
+                                <img th:src="@{/img/clock.svg}" class="status-icon"/>
+                            </div>
+                            <div class="status-items">
+                                <progress class="uk-progress" th:value="${currentUser.punctualityRating}" max="100"></progress>
+                                <h6>
+                                    <span th:text="${currentUser.helpfulnessRating}" class="blue"></span>
+                                    pontos de <span class="blue">Pontualidade</span>
+                                </h6>
+                            </div>
+                        </div>
+
+                        <div class="status-container">
+                            <div>
+                                <img th:src="@{/img/laugh.svg}" class="status-icon"/>
+                            </div>
+                            <div class="status-items">
+                                <progress class="uk-progress" th:value="${currentUser.sympathyRating}" max="100"></progress>
+                                <h6>
+                                    <span th:text="${currentUser.sympathyRating}" class="blue"></span>
+                                    pontos de  <span class="blue">Simpatia</span>
+                                </h6>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>
     </section>
 
+
+    <div th:replace="~{fragments/footer :: footer-yellow}"></div>
     <form id="logoutForm" method="POST" th:action="@{/logout}">
 
     </form>

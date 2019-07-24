@@ -11,10 +11,11 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="   crossorigin="anonymous"></script>
 </head>
 <body>
+<div th:replace="~{fragments/header :: header-logged}"></div>
+
 <section id="fullpage-form" class="new-event">
 
     <div class="container">
-
 
         <div class="uk-card uk-card-default uk-card-body">
             <div class="uk-flex-center">
@@ -60,7 +61,7 @@
                             </div>
 <!--                        </div>-->
                         <div class="register-buttons">
-                            <button type="submit" class="uk-button uk-button-primary uk-align-center submit">Finalizar</button>
+                            <button type="button" onclick="submitForm()" class="uk-button uk-button-primary uk-align-center submit">Finalizar</button>
 <!--                            <button type="button" name="next" class="uk-button uk-button-primary uk-align-center next">Próximo</button>-->
                         </div>
                     </fieldset>
@@ -70,6 +71,7 @@
         </div>
     </div>
 </section>
+<!--<div th:insert="~{fragments/footer :: footer-yellow}"></div>-->
 <script th:src="@{/js/uikit.min.js}"></script>
 <script th:src="@{/js/uikit-icons.min.js}"></script>
 <script th:src="@{/js/multipartform.js}"></script>
@@ -82,6 +84,8 @@
     $("#description").on("input", function(){
         document.querySelector(".sub-label").innerText = (145 - $("#description").val().length) + " CHAR"
     })
+
+    const submitForm = () => document.forms[1].submit()
 </script>
 
 <script th:src="@{/js/job-opening.js}"></script>

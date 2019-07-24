@@ -88,6 +88,10 @@ h6 {
 /*====================================================================
             HEADER
 =====================================================================*/
+header.navigation-bar{
+  box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+  margin-bottom: 25px;
+}
 header#navbar {
   background-color: #fff;
   box-shadow: 0 10px 20px #F4F4F5;
@@ -230,7 +234,7 @@ nav.uk-navbar .uk-navbar-center .uk-search {
   position: absolute;
   z-index: 99;
   opacity: 0.8;
-  width: 70%;
+  width: 80%;
   align-self: center;
   top: 75px;
 }
@@ -430,6 +434,8 @@ img {
 .user-big-pic {
   height: 240px;
   width: 240px;
+  border: 5px solid white;
+  box-shadow: 1px 3px 10px rgba(0,0,0,0.3);
 }
 
 /*====================================================================
@@ -438,6 +444,9 @@ img {
 footer#general-footer {
   background-color: #c59609;
   color: white !important;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }
 
 /*====================================================================
@@ -464,7 +473,26 @@ footer#general-footer {
   font-weight: normal;
   float: right;
 }
-
+.status-container{
+  display: inline-flex;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+}
+.status-icon{
+  width: 36px;
+  margin-right: 15px;
+}
+.status-items{
+  width: 100%;
+}
+.status-items progress{
+  margin: 5px;
+}
+.status-items h6{
+  margin: 10px;
+  text-align: right;
+}
 .comment-container {
   padding: 20px;
   display: flex;
@@ -551,6 +579,11 @@ footer#general-footer {
 .vaga-item-card .status h4 span {
   font-size: 32px;
   padding-right: 10px;
+}
+
+.event-edit-form {
+  width: 50vw;
+  margin: 0 auto;
 }
 
 /*# sourceMappingURL=custom.css.map */

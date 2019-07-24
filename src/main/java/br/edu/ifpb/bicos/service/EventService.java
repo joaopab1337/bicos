@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface EventService {
     void save(Event event);
+    Event eventById(Long id);
 //    List<Event> findByName(String name);
     List<Event> findByPromoterUsername(String promoterName);
 

@@ -1,10 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Bicos - Meus bicos</title>
+    <link rel="stylesheet" th:href="@{/css/uikit.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/custom.css}" />
+    <script   src="https://code.jquery.com/jquery-3.4.1.min.js"   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="   crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="   crossorigin="anonymous"></script>
 </head>
 <body>
 
+    <div th:replace="~{fragments/header :: header-logged}"></div>
+    <a th:href="@{/events}">Voltar</a>
+    <form th:action="@{'/events'+}" th:object="${event}" method="POST" class="uk-form-stacked event-edit-form uk-margin-large-bottom">
+        <fieldset class="part1">
+            <div class="uk-margin" >
+                <label class="uk-form-label" for="name">Nome do Evento</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input" id="name" name="name" th:field="*{name}" type="text" placeholder="Evento tal...">
+                </div>
+
+                <label class="uk-form-label" for="description">Descrição <span class="sub-label">145 CHARS</span></label>
+                <div class="uk-form-controls">
+                    <textarea class="uk-textarea" id="description" th:field="*{description}" rows="5" placeholder="Fale sobre o evento..." maxlength="145"></textarea>
+                </div>
+            </div>
+
+            <div class="uk-margin">
+                <label class="uk-form-label" for="date">Data do Evento</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input" id="date" name="date" th:field="*{date}" type="text" placeholder="dd/mm/aaaa">
+                </div>
+
+                <label class="uk-form-label" for="working-hours">Duração <span class="sub-label">3H</span></label>
+                <div class="uk-form-controls">
+                    <input class="uk-range" id="working-hours" th:field="*{duration}" type="range" min="1" max="40" value="3" onchange="updateRangeValue()">
+                </div>
+
+                <label class="uk-form-label" for="place">Local</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input" id="place" th:field="*{address}" type="text" placeholder="joao@silva.com">
+                </div>
+            </div>
+            <div class="register-buttons">
+                <button type="submit" class="uk-button uk-button-primary uk-align-center submit">Editar</button>
+            </div>
+        </fieldset>
+
+    </form>
+
+<!--    <div th:replace="~{fragments/footer :: footer-yellow}"></div>-->
+
+    <script>
+        const updateRangeValue = () => {
+            document.querySelectorAll(".sub-label")[1].innerText = `${document.getElementById("working-hours").value} H`
+        }
+        updateRangeValue()
+    </script>
+    <script th:src="@{/js/uikit.min.js}"></script>
+    <script th:src="@{/js/uikit-icons.min.js}"></script>
 </body>
 </html>
